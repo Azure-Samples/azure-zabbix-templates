@@ -1,7 +1,10 @@
 {
     "files": [
         "lib/conf.ts",
+        "lib/diag.ts",
         "lib/main.ts",
+        "lib/state.ts",
+        "lib/util.ts",
         "test/conf.spec.ts",
         "typings/index.d.ts"
     ],
