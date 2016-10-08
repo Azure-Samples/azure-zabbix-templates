@@ -1,7 +1,9 @@
 {
     "files": [
-        "main.ts",
-        "../typings/index.d.ts"
+        "lib/conf.ts",
+        "lib/main.ts",
+        "test/conf.spec.ts",
+        "typings/index.d.ts"
     ],
     "compilerOptions": {
         "target": "es5",

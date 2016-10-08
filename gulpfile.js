@@ -1,20 +1,27 @@
-var gulp = require("gulp");
-var ts = require("gulp-typescript");
-var tslint = require("gulp-tslint");
-var tsProject = ts.createProject("src/tsconfig.json");
+const gulp = require("gulp");
+const ts = require("gulp-typescript");
+const tslint = require("gulp-tslint");
+const jasmine = require('gulp-jasmine');
+const tsProject = ts.createProject("tsconfig.json");
 
-gulp.task("default", ["build", "tslint"]);
+gulp.task("default", ["build", "test", "tslint"]);
 
 gulp.task("build", function () {
-    return tsProject.src()
-    .pipe(tsProject()).js
-    .pipe(gulp.dest("lib/"));
+  return tsProject.src()
+    .pipe(tsProject())
+    .js
+    .pipe(gulp.dest("./"));
 });
 
 gulp.task("tslint", function () {
-  tsProject.src()
+  gulp.src('src/*.ts')
     .pipe(tslint({
       formatter: "verbose"
     }))
     .pipe(tslint.report())
+});
+
+gulp.task("test", ["build"], function () {
+  gulp.src('test/*.spec.js')
+    .pipe(jasmine());
 });
