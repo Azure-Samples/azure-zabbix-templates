@@ -7,3 +7,4 @@ test/*.js
 *~
 *.log
 .state
+lib/
