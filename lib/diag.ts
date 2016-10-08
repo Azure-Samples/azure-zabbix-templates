@@ -1,8 +1,8 @@
-import { Vm } from './conf';
-import { State } from './state';
+import { Vm } from "./conf";
+import { State } from "./state";
 // import { TableService, TableQuery } from "azure-storage";
-import { Promise } from 'es6-promise';
-const azure = require('azure-storage');
+import { Promise } from "es6-promise";
+const azure = require("azure-storage");
 
 interface TableService {
   listTablesSegmentedWithPrefix: any;
@@ -57,7 +57,7 @@ export class Diag {
     const query: TableQuery = new azure.TableQuery();
     query
       .top(768)
-      .where('PartitionKey eq ? and Timestamp gt datetime?', partitionKey, dt);
+      .where("PartitionKey eq ? and Timestamp gt datetime?", partitionKey, dt);
 
     return Diag.queryTableOne(ts, tableName, query, null).then(function (list) {
       console.error(list.length);
@@ -70,7 +70,7 @@ export class Diag {
 
   private static item2str(vmName: string, entry: Entry) {
     let value = entry.Last._;
-    if (typeof value === 'string') {
+    if (typeof value === "string") {
       value = `"${value}"`;
     }
     let ts = entry.TIMESTAMP._.getTime() / 1000;

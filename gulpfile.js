@@ -14,7 +14,7 @@ gulp.task("build", function () {
 });
 
 gulp.task("tslint", function () {
-  gulp.src('src/*.ts')
+  gulp.src('lib/*.ts')
     .pipe(tslint({
       formatter: "verbose"
     }))

@@ -1,4 +1,4 @@
-import fs = require('fs');
+import fs = require("fs");
 
 export interface MdState {
     lastUpdate?: number;
