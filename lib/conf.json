@@ -1,0 +1,11 @@
+{
+    "virtualMachines": {
+        "vm1": {
+            "resourceId": "",
+            "diagnosticConfig": "cfg1"
+        }
+    },
+    "connectionStrings": {
+        "cfg1": ""
+    }
+}
