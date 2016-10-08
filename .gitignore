@@ -1,0 +1,9 @@
+node_modules/
+**/.vscode
+typings/
+src/*.js
+test/*.js
+*.js.map
+*~
+*.log
+.state
