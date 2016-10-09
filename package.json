@@ -17,7 +17,8 @@
     "typings": "^1.4.0"
   },
   "scripts": {
-    "release": "node_modules\\.bin\\typings install && node_modules\\.bin\\gulp release && pushd dist\\azure-zabbix-templates && npm install --production && popd"
+    "release": "$(npm bin)/typings install && $(npm bin)/gulp release && npm install --production --prefix dist/azure-zabbix-templates",
+    "release_win": "node_modules\\.bin\\typings install && node_modules\\.bin\\gulp release && npm install --production --prefix dist\\azure-zabbix-templates"
   },
   "dependencies": {
     "azure-storage": "^1.3.1",
