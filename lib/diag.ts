@@ -1,17 +1,10 @@
+/// <reference path="../typings/uuid.d.ts" />
+
 import { Vm } from "./conf";
 import { State } from "./state";
-// import { TableService, TableQuery } from "azure-storage";
+import { TableService, TableQuery } from "azure-storage";
 import { Promise } from "es6-promise";
 const azure = require("azure-storage");
-
-interface TableService {
-  listTablesSegmentedWithPrefix: any;
-  queryEntities: any;
-}
-
-interface TableQuery {
-  top: any;
-}
 
 interface SVal {
   _: any;
