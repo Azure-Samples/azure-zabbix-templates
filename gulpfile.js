@@ -25,3 +25,8 @@ gulp.task("test", ["build"], function () {
   gulp.src('test/*.spec.js')
     .pipe(jasmine());
 });
+
+gulp.task("release", ["build"], function () {
+  gulp.src(['lib/**/*.js', 'lib/**/*.json', 'bin/*', "package.json"], {base:"."})
+    .pipe(gulp.dest("dist/azure-zabbix-templates/"));
+});
