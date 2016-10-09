@@ -1,0 +1,7 @@
+#!/bin/bash
+
+CUR=$(dirname $0)
+sh -c "$CUR/vmdiag query -s $@| zabbix_sender -c /etc/zabbix/zabbix_agentd.conf -T -i -" >/dev/null 2>&1 &
+
+echo 1
+

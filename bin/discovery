@@ -1,0 +1,6 @@
+#!/bin/bash
+
+NODE_BIN=node
+CUR=$(dirname $0)
+
+$CUR/vmdiag discovery
