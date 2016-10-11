@@ -6,6 +6,7 @@
         "lib/state.ts",
         "lib/util.ts",
         "test/conf.spec.ts",
+        "test/util.spec.ts",
         "typings/index.d.ts"
     ],
     "compilerOptions": {

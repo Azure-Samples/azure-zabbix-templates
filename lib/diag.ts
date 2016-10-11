@@ -2,6 +2,7 @@
 
 import { Vm } from "./conf";
 import { State } from "./state";
+import { Util } from "./util";
 import { TableService, TableQuery } from "azure-storage";
 import { Promise } from "es6-promise";
 const azure = require("azure-storage");
@@ -44,13 +45,14 @@ export class Diag {
 
   private static queryTable(ts: TableService, tableName: string, vm: Vm, st: State): Promise<any> {
     let s1 = st.LoadState(vm.name);
-    let dt = new Date(s1.lastUpdate).toISOString();
+    const dts = new Date(s1.lastUpdate);
+    let rk = Util.GetRowKeyTick(dts) + "__";
 
     const partitionKey: string = Diag.getEscapedString(vm.resourceId);
     const query: TableQuery = new azure.TableQuery();
     query
       .top(768)
-      .where("PartitionKey eq ? and Timestamp gt datetime?", partitionKey, dt);
+      .where("PartitionKey eq ? and RowKey le ?", partitionKey, rk);
 
     return Diag.queryTableOne(ts, tableName, query, null).then(function (list) {
       console.error(list.length);
