@@ -10,7 +10,12 @@ foreach($rg in $rgs){
   $vms = Get-AzureRmVm -ResourceGroupName $resourceGroupName
   
   foreach ($vm in $vms) {
-    $ext = Get-AzureRmVMDiagnosticsExtension -ResourceGroupName $resourceGroupName -VMName $vm.Name
+    $ext = $null
+    $ext = Get-AzureRmVMExtension -ResourceGroupName $resourceGroupName -VMName $vm.Name -Name Microsoft.Insights.VMDiagnosticsSettings 2> $null
+  if(!$ext){
+    $ext = Get-AzureRmVMExtension -ResourceGroupName $resourceGroupName -VMName $vm.Name -Name LinuxDiagnostic 2> $null
+  }
+
     if($ext) {
       $psettings = $ext.PublicSettings| ConvertFrom-Json
       $sto = $psettings.StorageAccount
