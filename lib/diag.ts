@@ -12,7 +12,7 @@ interface SVal {
 
 interface Entry {
   CounterName: SVal;
-  Last: SVal;
+  Average: SVal;
   TIMESTAMP: SVal;
 }
 
@@ -62,7 +62,7 @@ export class Diag {
   }
 
   private static item2str(vmName: string, entry: Entry) {
-    let value = entry.Last._;
+    let value = entry.Average._;
     if (typeof value === "string") {
       value = `"${value}"`;
     }
