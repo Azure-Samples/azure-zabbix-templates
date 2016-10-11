@@ -1,24 +1,25 @@
 $cvm = @{}
 $cso = New-Object System.Collections.Generic.HashSet[String]
 
-Write-Host "Listing Vms."
-$vms = Get-AzureRmVm
+Write-Host "Get resourceGroups"
+$rgs = Get-AzureRmResourceGroup
 $i = 0
-foreach ($vm in $vms) {
-  Write-Progress -activity "Checking VM Config" -status $vm.name -percentComplete ((++$i / $vms.length)  * 100)
-  $ext = Get-AzureRmVMDiagnosticsExtension -ResourceGroupName $vm.ResourceGroupName -VMName $vm.Name
-  if($ext) {
-    $psettings = $ext.PublicSettings| ConvertFrom-Json
-    $sto = $psettings.StorageAccount
-    # Workaround for resource group name is in upper case.
-    $ar = $vm.Id.Split("/")
-    $ar[4]=$ar[4].ToLower()
-    $id = $ar -join "/"
-    $cvm[$vm.name]=@{
-        resourceId=$id;
-        diagnosticConfig=$sto
-      }
-      $ret = $cso.Add($sto)
+foreach($rg in $rgs){
+  $resourceGroupName = $rg.ResourceGroupName
+  Write-Progress -activity "Scanning VM" -status $resourceGroupName -percentComplete ((++$i / $rgs.length)  * 100)
+  $vms = Get-AzureRmVm -ResourceGroupName $resourceGroupName
+  
+  foreach ($vm in $vms) {
+    $ext = Get-AzureRmVMDiagnosticsExtension -ResourceGroupName $resourceGroupName -VMName $vm.Name
+    if($ext) {
+      $psettings = $ext.PublicSettings| ConvertFrom-Json
+      $sto = $psettings.StorageAccount
+      $cvm[$vm.name]=@{
+          resourceId=$vm.Id;
+          diagnosticConfig=$sto
+        }
+        $ret = $cso.Add($sto)
+    }
   }
 }
 
@@ -37,5 +38,5 @@ foreach ($sa in $sas){
 }
 
 $result = @{virtualMachines=$cvm;connectionStrings=$css}
-$json = $result| ConvertTo-Json -Depth 3
-Write-Output $json
+$json = $result| ConvertTo-Json -Depth 3 
+[System.IO.File]::WriteAllLines("$PSScriptRoot\\conf.json", $json)
