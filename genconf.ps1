@@ -4,12 +4,13 @@ $cso = New-Object System.Collections.Generic.HashSet[String]
 Write-Host "Get resourceGroups"
 $rgs = Get-AzureRmResourceGroup
 $i = 0
+$vmc = (Get-AzureRmVm).length
 foreach($rg in $rgs){
   $resourceGroupName = $rg.ResourceGroupName
-  Write-Progress -activity "Scanning VM" -status $resourceGroupName -percentComplete ((++$i / $rgs.length)  * 100)
   $vms = Get-AzureRmVm -ResourceGroupName $resourceGroupName
   
   foreach ($vm in $vms) {
+    Write-Progress -activity "Scanning VM" -status "$resourceGroupName/$($vm.Name)" -percentComplete ((++$i / $vmc)  * 100)
     $ext = $null
     $ext = Get-AzureRmVMExtension -ResourceGroupName $resourceGroupName -VMName $vm.Name -Name Microsoft.Insights.VMDiagnosticsSettings 2> $null
   if(!$ext){
@@ -33,8 +34,8 @@ $css = @{}
 $sas = Get-AzureRmStorageAccount
 $i = 0
 foreach ($sa in $sas){
-  Write-Progress -activity "Checking StorageAccount" -status $sa.StorageAccountName -percentComplete ((++$i / $sas.length)  * 100)
   if($cso.Contains($sa.StorageAccountName)){
+    Write-Progress -activity "Checking StorageAccount" -status $sa.StorageAccountName -percentComplete ((++$i / $cso.Count)  * 100)
     $gv = Get-AzureRmStorageAccountKey -ResourceGroupName $sa.ResourceGroupName -Name $sa.StorageAccountName
     $key = $gv[1].Value
     $connectionStr = "DefaultEndpointsProtocol=https;AccountName=$($sa.StorageAccountName);AccountKey=$key;"
