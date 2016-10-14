@@ -14,31 +14,31 @@ Supports reading diagnostic data for virtual machines on Azure.
    Install nodejs, and make sure 'node' command line is accessable via command line.
 
    For example, for Ubuntu 14.04 VM, try:
-```
-sudo apt install --no-install-recommends -y nodejs-legacy npm
-```
+  ```
+  sudo apt install --no-install-recommends -y nodejs-legacy npm
+  ```
 
 3. Clone the project and run setup
 
-```
-sudo apt install -y git
-git clone https://github.com/Azure/azure-zabbix-templates.git
-pushd azure-zabbix-templates
-npm install
-npm run release
-popd
-```
+   ```
+   sudo apt install -y git
+   git clone https://github.com/Azure/azure-zabbix-templates.git
+   pushd azure-zabbix-templates
+   npm install
+   npm run release
+   popd
+   ```
 
 4. Set up zabbix agent
 
    - Link the project to '/opt', you can also use any location you want, but remember to update `azure_monitoring_agentd.conf`, so that it would point to correct path.
    - Copy config file for zabbix agent.
    - Restart zabbix agent.
-```
-sudo ln -s $(pwd)/azure-zabbix-templates/dist/azure-zabbix-templates /opt/azure-zabbix
-sudo cp azure-zabbix-templates/conf/azure_monitoring_agentd.conf /etc/zabbix/zabbix_agentd.conf.d/
-sudo service zabbix-agent restart
-```
+   ```
+   sudo ln -s $(pwd)/azure-zabbix-templates/dist/azure-zabbix-templates /opt/azure-zabbix
+   sudo cp azure-zabbix-templates/conf/azure_monitoring_agentd.conf /etc/zabbix/zabbix_agentd.conf.d/
+   sudo service zabbix-agent restart
+   ```
 
 5. Setup conf.json
 
