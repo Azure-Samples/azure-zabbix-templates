@@ -1,5 +1,3 @@
-/// <reference path="../typings/uuid.d.ts" />
-
 import { Vm } from "./conf";
 import { State } from "./state";
 import { Util } from "./util";
