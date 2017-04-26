@@ -11,12 +11,9 @@ Supports reading diagnostic data for virtual machines on Azure.
 
 2. Prepare the hosting VM
 
-   Install nodejs, and make sure 'node' command line is accessable via command line.
+   Install nodejs, and make sure 'node' and 'npm' command line is accessable via PATH environment variable.
 
-   For example, for Ubuntu 14.04 VM, try:
-  ```
-  sudo apt install --no-install-recommends -y nodejs-legacy npm
-  ```
+   Please find a stable version at [nodejs download page](https://nodejs.org/en/download/), v6.10+ is recommended.
 
 3. Clone the project and run setup
 
