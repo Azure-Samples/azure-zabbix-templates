@@ -4,7 +4,7 @@
   "description": "Zabbix monitoring templates for azure resources.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Azure/azure-zabbix-templates.git"
+    "url": "git+https://github.com/Azure-Samples/azure-zabbix-templates.git"
   },
   "license": "MIT",
   "devDependencies": {
