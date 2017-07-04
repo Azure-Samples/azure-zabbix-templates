@@ -21,7 +21,7 @@ Supports reading diagnostic data for virtual machines on Azure.
 
    ```
    sudo apt install -y git
-   git clone https://github.com/Azure/azure-zabbix-templates.git
+   git clone https://github.com/Azure-Samples/azure-zabbix-templates.git
    pushd azure-zabbix-templates
    npm install
    npm run release
@@ -48,6 +48,10 @@ Supports reading diagnostic data for virtual machines on Azure.
 6. Import zabbix tempate
 
    Import 'conf/azure_monitoring_templstes.xml' through Zabbix portal, and link the current host to template 'Azure Monitoring'.
+
+### Screenshots
+Monitoring CPU usage percentage of same period on Azure portal and Zabbix Portal:
+![image](https://user-images.githubusercontent.com/10071498/27811911-8601d08e-609d-11e7-95a5-bb3eb76cdab0.png)
 
 ## Contributing
 
