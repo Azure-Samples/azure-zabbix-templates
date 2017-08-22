@@ -15,7 +15,7 @@ Supports reading diagnostic data for virtual machines on Azure.
 
    Please find a stable version at [nodejs download page](https://nodejs.org/en/download/), v6.10+ is recommended.
 
-   Or please visit [page] https://nodejs.org/en/download/package-manager/ for installing using package manager.
+   Or please visit [page](https://nodejs.org/en/download/package-manager/) for installing using package manager.
 
 3. Clone the project and run setup
 
@@ -40,6 +40,8 @@ Supports reading diagnostic data for virtual machines on Azure.
    ```
 
 5. Setup conf.json
+
+   If you haven't got powershell for Windows installed, please check page [Install the Windows Azure Cmdlets Module](https://msdn.microsoft.com/en-us/library/dn135248(v=nav.70).aspx).
 
    From a powershell console, log in an Azure account, then run genconf.ps1, it would automatically scan all VM with diagnostic data, and generate a 'conf.json'.
 
