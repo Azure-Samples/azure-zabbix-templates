@@ -7,6 +7,8 @@ Supports reading diagnostic data for virtual machines on Azure.
 
    Install Zabbix server manually according to the [document](https://www.zabbix.com/documentation/2.2/manual/installation) or use [zabbix quickstart sample for zabbix](https://github.com/Azure/azure-quickstart-templates/tree/master/zabbix-monitoring-cluster).
 
+   This sample is verified with Zabbix v2.2 and v3.2.
+   
    Install Zabbix agent on the same machine, and config to to talk to the server. The quick start sample will automaticlly do this. 
 
 2. Prepare the hosting VM
